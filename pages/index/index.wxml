@@ -1,0 +1,4 @@
+<button open-type="getUserInfo" bindgetuserinfo="getPerson">获取用户信息</button>
+
+
+

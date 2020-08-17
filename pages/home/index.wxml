@@ -1,0 +1,20 @@
+<!-- 首页 -->
+<view class="container">
+	<!-- 首页纵览 -->
+	<view class="info">
+		<view class="today">
+			<text>今日净额：{{todaymoney}}</text>
+		</view>
+		<view class="in_out">
+			<text>收入：{{in}}</text>
+			<text>支出：{{out}}</text>
+		</view>
+		<image src="/images/home/images.jpeg"></image>
+	</view>
+
+	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.jpg" class="van-card__img in-image"></image></view>
+
+	<van-card wx:for="{{list}}" wx:key="index" price="{{list[index].money}}" desc="{{list[index].date}}" title="{{list[index].notes}}" thumb="{{list[index].url}}">
+		<view class="footer" slot="footer"></view>
+	</van-card>
+</view>

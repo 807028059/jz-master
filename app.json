@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/bookkeeping/index",
+    "pages/home/index",
+    "pages/person/index",
+    "pages/chart/index",
+    "pages/statistics/index"
+  ],
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#F4D03F",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "iconPath": "/images/order.png",
+        "selectedIconPath": "/images/order_HL.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/statistics/index",
+        "iconPath": "/images/statistics.png",
+        "selectedIconPath": "/images/statistics_HL.png",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/bookkeeping/index",
+        "iconPath": "/images/bookkeeping.png",
+        "selectedIconPath": "/images/bookkeeping_HL.png",
+        "text": "记帐"
+      },
+      {
+        "pagePath": "pages/chart/index",
+        "iconPath": "/images/chart.png",
+        "selectedIconPath": "/images/chart_HL.png",
+        "text": "图表"
+      },
+      {
+        "pagePath": "pages/person/index",
+        "iconPath": "/images/me.png",
+        "selectedIconPath": "/images/me_HL.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#FDD835",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-card": "/miniprogram_npm/vant-weapp/card/index",
+    "echarts": "/ec-canvas/ec-canvas"
+  }
+}
