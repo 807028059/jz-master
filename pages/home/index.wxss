@@ -33,3 +33,22 @@ text{
   height: 2rpx;
   background-color: gainsboro;
 }
+
+.order-item {
+  height: 102rpx;
+  width: 100%;
+  position: relative;
+}
+
+.remove{  
+  width: 160rpx;  
+  height: 100%;  
+  background-color: red; 
+  color: white; 
+  position: absolute;  
+  top: 0;  
+  right: -160rpx;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+}  

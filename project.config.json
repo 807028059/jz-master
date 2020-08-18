@@ -30,7 +30,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.5.0",
 	"appid": "wx5b095de6af92e738",
-	"projectname": "%E8%87%AA%E5%AE%9A%E4%B9%89%20tabBar",
+	"projectname": "jz-master",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

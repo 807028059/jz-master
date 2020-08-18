@@ -14,7 +14,18 @@
 
 	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.jpg" class="van-card__img in-image"></image></view>
 
-	<van-card wx:for="{{list}}" wx:key="index" price="{{list[index].money}}" desc="{{list[index].date}}" title="{{list[index].notes}}" thumb="{{list[index].url}}">
-		<view class="footer" slot="footer"></view>
-	</van-card>
+
+
+    <block wx:key="item" wx:for="{{list}}">
+      <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" 
+      bindtouchend="drawEnd" style="right:{{item.right}}rpx">
+        
+        <van-card centered="true"  price="{{item.money}}" desc="{{item.date}}" title="{{item.notes}}" thumb="{{item.url}}">
+            <view class="footer" slot="footer"></view>
+	      </van-card>
+
+        <view id="{{item.id}}" class="remove" bindtap="delItem">删除</view>
+     </view>
+    </block>
+
 </view>
