@@ -8,6 +8,7 @@ Page({
     out: '0',
     list: [],
     hiddenName:true, 
+    current: "0",
     param:{
       pageNum:'1',
       pageSize:'10'
@@ -89,6 +90,7 @@ Page({
   onShow:function(){
     var list = this.data.list;
     this.data.param.openid = users.openid;
+    this.data.param.type = this.data.current;
     var self = this;
     wx.request({
       url: 'http://127.0.0.1:8001/money/queryMoneyList',
@@ -144,6 +146,21 @@ Page({
         }
       }
     })
+  },
+
+  outClick: function () {
+    this.setData({
+      current: "0",
+      list: []
+    });
+    this.onShow();
+  },
+  inClick: function () {
+    this.setData({
+      current: "1",
+      list:[]
+    });
+    this.onShow();
   }
 
   

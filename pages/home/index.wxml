@@ -5,12 +5,21 @@
 		<view class="today">
 			<text>今日净额：{{todaymoney}}</text>
 		</view>
-		<view class="in_out">
+		<view class="in_out tview">
 			<text>收入：{{in}}</text>
 			<text>支出：{{out}}</text>
 		</view>
 		<image src="/images/home/images.jpeg"></image>
 	</view>
+
+  <view class='home-menu'>
+    <view class='top-menu'>
+      <text bindtap='outClick' class='top-menu-out {{current == 0 ? "bgw" : ""}}'>支出</text>
+      <icon class='line'></icon>
+      <text bindtap='inClick' class='top-menu-in {{current == 1 ? "bgw" : ""}}'>收入</text>
+    </view>
+  </view>
+
 
 	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.jpg" class="van-card__img in-image"></image></view>
 
