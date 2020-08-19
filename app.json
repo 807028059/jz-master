@@ -2,9 +2,7 @@
   "pages": [
     "pages/bookkeeping/index",
     "pages/home/index",
-    "pages/person/index",
-    "pages/chart/index",
-    "pages/statistics/index"
+    "pages/person/index"
   ],
   "tabBar": {
     "color": "#7A7E83",
@@ -18,24 +16,14 @@
         "selectedIconPath": "/images/order_HL.png",
         "text": "首页"
       },
-      {
-        "pagePath": "pages/statistics/index",
-        "iconPath": "/images/statistics.png",
-        "selectedIconPath": "/images/statistics_HL.png",
-        "text": "统计"
-      },
+      
       {
         "pagePath": "pages/bookkeeping/index",
         "iconPath": "/images/bookkeeping.png",
         "selectedIconPath": "/images/bookkeeping_HL.png",
         "text": "记帐"
       },
-      {
-        "pagePath": "pages/chart/index",
-        "iconPath": "/images/chart.png",
-        "selectedIconPath": "/images/chart_HL.png",
-        "text": "图表"
-      },
+     
       {
         "pagePath": "pages/person/index",
         "iconPath": "/images/me.png",

@@ -13,7 +13,7 @@
     <swiper-item class='swiper-item'>
       <view class='item-wrapper'>
         <view wx:for="{{categories_out}}" class='item' wx:key="index">
-          <image style="width: 30rpx;height: 30rpx;" class='{{data_out.iconSelected === index ? "red": "blue"}}' bindtap='iconClick' data-id='{{index}}' src='{{item.icon }}'></image>
+          <image style="width: 30rpx;height: 30rpx;" class='{{data_out.iconSelected == item.id ? "red": "blue"}}' bindtap='iconClick' data-id='{{item.id}}' src='{{item.icon }}'></image>
           <text>{{item.text}}</text>
         </view>
       </view>
@@ -33,8 +33,8 @@
           <input placeholder='点我写备注' type='text' value='{{data_out.notes}}' bindinput='watchNotes'></input>
         </view>
         <view class='botinput line'>
-          <label>支出费用：</label>
-          <input placeholder='点我写支出费用' type='text' value='{{data_out.money}}' bindinput='watchMoney'></input>
+          <label>支出：</label>
+          <input placeholder='点我写支出' type='text' value='{{data_out.money}}' bindinput='watchMoney'></input>
         </view>
         <view>
           <button class='save-btn' bindtap='handleSave'>保存</button>
@@ -46,7 +46,7 @@
     <swiper-item class='swiper-item'>
       <view class='item-wrapper'>
         <view wx:for="{{categories_in}}" class='item' wx:key="index">
-          <image  style="width: 30rpx;height: 30rpx;"  class='{{data_in.iconSelected === index ? "red": "blue"}}' bindtap='iconClick' data-id='{{index}}' src='{{item.icon }}'></image>
+          <image  style="width: 30rpx;height: 30rpx;"  class='{{data_in.iconSelected == item.id ? "red": "blue"}}' bindtap='iconClick' data-id='{{item.id}}' src='{{item.icon }}'></image>
           <text>{{item.text}}</text>
         </view>
       </view>
@@ -66,8 +66,8 @@
           <input placeholder='点我写备注' type='text' value='{{data_in.notes}}' bindinput='watchNotes'></input>
         </view>
         <view class='botinput line'>
-          <label>收入费用：</label>
-          <input placeholder='点我写支出费用' type='text' value='{{data_in.money}}' bindinput='watchMoney'></input>
+          <label>收入：</label>
+          <input placeholder='点我写收入' type='text' value='{{data_in.money}}' bindinput='watchMoney'></input>
         </view>
         <view>
           <button class='save-btn' bindtap='handleSave'>保存</button>

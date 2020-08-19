@@ -75,3 +75,10 @@ text{
   display: inline-block;
   color: #fff;
 }
+
+.card-image-container{
+  align-items: center;/** 垂直居中*/
+  display: flex;
+  justify-content: center; /** flex 属性， 水平居中**/
+}
+

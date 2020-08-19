@@ -3,11 +3,11 @@
 	<!-- 首页纵览 -->
 	<view class="info">
 		<view class="today">
-			<text>今日净额：{{todaymoney}}</text>
+			<text>当月净额：{{monthJE}}</text>
 		</view>
 		<view class="in_out tview">
-			<text>收入：{{in}}</text>
-			<text>支出：{{out}}</text>
+			<text>日收入：{{todayIn}}</text>
+			<text>日支出：{{todayOut}}</text>
 		</view>
 		<image src="/images/home/images.jpeg"></image>
 	</view>
@@ -21,7 +21,7 @@
   </view>
 
 
-	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.jpg" class="van-card__img in-image"></image></view>
+	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.png" class="van-card__img in-image card-image-container"></image></view>
 
 
 
@@ -29,7 +29,7 @@
       <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" 
       bindtouchend="drawEnd" style="right:{{item.right}}rpx">
         
-        <van-card centered="true"  price="{{item.money}}" desc="{{item.date}}" title="{{item.notes}}" thumb="{{item.url}}">
+        <van-card centered="true"  price="{{item.money}}" desc="{{item.date}}" title="备注：{{item.notes}}" thumb="{{item.url}}">
             <view class="footer" slot="footer"></view>
 	      </van-card>
 

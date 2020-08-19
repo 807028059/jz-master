@@ -1,7 +1,6 @@
 // pages/bookkeeping/index.js
 // pages/addition/addition.js
 const utils = require('../../utils/util.js');
-const config = require('../../config/config.js');
 const api = require('../../http/api.js');
 let { c_out, c_in, users, text } = getApp().globalData;
 Page({
@@ -15,16 +14,16 @@ Page({
     data_out: {
       date: utils.getDate(),
       getWeek: utils.getWeek(),
-      iconSelected: 0,
+      iconSelected: 1,
       notes: '',
-      money: 0,
+      money: '',
     },
     data_in: {
       date: utils.getDate(),
       getWeek: utils.getWeek(),
-      iconSelected: 0,
+      iconSelected: 19,
       notes: '',
-      money: 0,
+      money: '',
     },
   },
   onLoad: function (options) {
@@ -199,16 +198,16 @@ Page({
       let data_out = this.data.data_out;
       let data_in = this.data.data_in;
       if (this.data.current === 0) {
-        data_out.money = '0';
+        data_out.money = '';
         data_out.notes = '';
-        data_out.iconSelected = '0';
+        data_out.iconSelected = '1';
         this.setData({
           data_out
         })
       } else {
-        data_in.money = '0';
+        data_in.money = '';
         data_in.notes = '';
-        data_in.iconSelected = '0';
+        data_in.iconSelected = '19';
         this.setData({
           data_in
         })
@@ -248,15 +247,17 @@ Page({
   },
   //入库用户信息操作
   getPerson:function(){
-    var openid = users.openid;
-    wx.request({
-      url: 'http://127.0.0.1:8001/user/OpreateUser',
-      data: {"openid":openid},
-      method:"POST",
-      success:function(res){
-        console.log("==========>openid保存成功");
-      }
-    })
+    var sendData = {};
+    sendData.openid = users.openid;
+    api['OpreateUser'](sendData).then((res) => {
+      console.log("==========>openid保存成功");
+    }).catch(() => {
+      wx.showToast({
+        duration: 3000,
+        title: "出错了",
+        icon: 'none',
+      })
+    }); 
   }
 
 });

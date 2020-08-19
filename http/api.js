@@ -122,17 +122,7 @@ exports.saveCategories = function (data) {
     })
 };
 
-exports.OpreateMoney = function (data) {
-    return http({
-        url: baseURL + '/money/OpreateMoney',
-        method: method.post,
-        data,
-        headers: {
-            token: tokenStorage.token,
-            expiresIn: tokenStorage.expiresIn
-        }
-    })
-};
+
 
 exports.updateBills = function (data) {
     return http({
@@ -168,4 +158,55 @@ exports.avatar = function ({data, fileOptions}) {
             expiresIn: tokenStorage.expiresIn
         },
     });
+};
+
+//=================  zhouj start =======================
+
+exports.OpreateMoney = function (data) {
+    return http({
+        url: baseURL + '/money/OpreateMoney',
+        method: method.post,
+        data,
+        headers: {
+            token: tokenStorage.token,
+            expiresIn: tokenStorage.expiresIn
+        }
+    })
+};
+
+exports.removeMoney = function (data) {
+    return http({
+        url: baseURL + '/money/removeMoney',
+        method: method.post,
+        data,
+        headers: {
+            token: tokenStorage.token,
+            expiresIn: tokenStorage.expiresIn
+        }
+    })
+};
+
+
+exports.queryMoneyList = function (data) {
+    return http({
+        url: baseURL + '/money/queryMoneyList',
+        method: method.post,
+        data,
+        headers: {
+            token: tokenStorage.token,
+            expiresIn: tokenStorage.expiresIn
+        }
+    })
+};
+
+exports.OpreateUser = function (data) {
+    return http({
+        url: baseURL + '/user/OpreateUser',
+        method: method.post,
+        data,
+        headers: {
+            token: tokenStorage.token,
+            expiresIn: tokenStorage.expiresIn
+        }
+    })
 };

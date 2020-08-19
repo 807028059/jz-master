@@ -3,9 +3,9 @@ const api = require('../../http/api')
 let {users} = getApp().globalData;
 Page({
   data: {
-    todaymoney: '1000',
-    in: '0',
-    out: '0',
+    monthJE: '1000',
+    todayIn: '0',
+    todayOut: '0',
     list: [],
     hiddenName:true, 
     current: "0",
@@ -86,66 +86,92 @@ Page({
   },
 
 
-  //入库用户信息操作
+  //查询记账信息
   onShow:function(){
-    var list = this.data.list;
+    wx.showLoading({
+      title: '',
+    });
     this.data.param.openid = users.openid;
     this.data.param.type = this.data.current;
+    var sendData = this.data.param;
     var self = this;
-    wx.request({
-      url: 'http://127.0.0.1:8001/money/queryMoneyList',
-      data: this.data.param,
-      method:"POST",
-      success:function(res){
-        console.log("==========>查询成功");
-        list = res.data.list;
+    api['queryMoneyList'](sendData).then((res) => {
+      console.log("==========>查询成功");
+        var list = res.list;
+        var object = res.object;
         if(list.length == 0){
           self.setData({
-            hiddenName:false
+            hiddenName:false,
+            list:[],
+            todayOut:object.todayOut,
+            todayIn:object.todayIn,
+            monthJE:object.monthJE
           })
         }else{
           self.setData({
-            list,
-            hiddenName: true
+            list:list,
+            hiddenName: true,
+            todayOut:object.todayOut,
+            todayIn:object.todayIn,
+            monthJE:object.monthJE
           })
         }
-      }
-    })
+    }).catch(() => {
+      wx.showToast({
+        duration: 3000,
+        title: "出错了",
+        icon: 'none',
+      })
+    });
   },
 
   //记账删除
   delItem: function(e) {
-    var id = e.currentTarget.id;
-    var openid = users.openid;
+    wx.showLoading({
+      title: '',
+    });
+    var sendData = {};
+    sendData.id = e.currentTarget.id;
+    sendData.openid = users.openid;
+    sendData.pageNum = "1";
+    sendData.pageSize = "10";
     var self = this;
-    wx.request({
-      url: 'http://127.0.0.1:8001/money/removeMoney',
-      data: { id:id,openid:openid,pageNum:"1",pageSize:"10"},
-      method: "POST",
-      success: function (res) {
-        if(res.data.retCode == "0"){
-          console.log("==========>删除成功");
-          var list = res.data.list;
-          if (list.length == 0) {
-            self.setData({
-              list:[],
-              hiddenName: false
-            })
-          } else {
-            self.setData({
-              list:list,
-              hiddenName: true
-            })
-          }
-        }else{
-          wx.showToast({
-            duration: 3000,
-            title: res.data.retMsg,
-            icon: 'none',
+    api['removeMoney'](sendData).then((res) => {
+      if(res.retCode == "0"){
+        console.log("==========>删除成功");
+        var list = res.list;
+        var object = res.object;
+        if (list.length == 0) {
+          self.setData({
+            list:[],
+            hiddenName: false,
+            todayOut:object.todayOut,
+            todayIn:object.todayIn,
+            monthJE:object.monthJE
+          })
+        } else {
+          self.setData({
+            list:list,
+            hiddenName: true,
+            todayOut:object.todayOut,
+            todayIn:object.todayIn,
+            monthJE:object.monthJE
           })
         }
+      }else{
+        wx.showToast({
+          duration: 3000,
+          title: res.data.retMsg,
+          icon: 'none',
+        })
       }
-    })
+    }).catch(() => {
+      wx.showToast({
+        duration: 3000,
+        title: "出错了",
+        icon: 'none',
+      })
+    });
   },
 
   outClick: function () {
