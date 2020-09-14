@@ -1,0 +1,25 @@
+<!--pages/schoolBegin/schoolBegin.wxml-->
+<view class='border-solid-radius margin2020 back'>
+ <block wx:key="item" wx:for="{{list}}">
+        <view class='school-head flex-center'>
+          <view class='width20 flex-center'>
+            <view  class="user-pho-min">
+              <image  src="/images/MyMine.png" mode="aspectFill"></image>
+            </view>
+          </view>
+          <view class='width80'>
+            <view class='font-wei500 font-size15'>匿名用户</view>
+            <view class='font-size12 font-wei400 colorFFF'>{{item.createtime}}</view>
+          </view>
+        </view>
+        <view class='school-text font-size14 font-wei400 padding020 margin-top20'>
+          意见：{{item.content}}
+        </view>
+
+  </block>
+
+
+ 
+ 
+</view>
+

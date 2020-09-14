@@ -1,0 +1,9 @@
+<!--pages/opinion/opinion.wxml-->
+<view class='padding020'>
+<form bindsubmit="clcikGood">
+  <textarea placeholder="请输入您宝贵的意思" value="{{name}}" name="textarea" class='border-solid-radius width100 padding2020 margin20 height480'></textarea>
+  
+    <button form-type="submit" type="button" class='save-btn'>保存</button>
+
+ </form>
+</view>

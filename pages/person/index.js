@@ -8,43 +8,42 @@ Page({
         nickname: '',
         avatar: '../../images/home/cloths.png',
         mines: [{
-            class: '',
-            icon: '',
-            text: '类别设置',
-            url: '../catelogsetting/catelogsetting'
-        },
-            {
-                class: 'bottom10',
-                icon: '../../images/mine/setting_password.svg',
-                text: '密码设置',
-                url: '../forget/forget'
-            },
-            {
                 class: '',
                 icon: '../../images/mine/setting_help.svg',
                 text: '常见问题',
-                url: ''
+                url: '',
+                function:''
             },
             {
                 class: '',
                 icon: '../../images/mine/setting_advice.svg',
                 text: '意见反馈',
-                url: ''
+                url: '',
+                function:''
             },
             {
                 class: 'bottom10',
                 icon: '../../images/mine/setting_about.svg',
                 text: '关于家庭记账系统',
-                url: '../about/about'
+                url: '../about/about',
+                function:''
             },
-            // {
-            //   class: 'bottom10',
-            //   icon: './../../images/mine/setting_logout.svg',
-            //   text: '退出账号',
-            //   url: './../login/login'
-            // }
+            {
+                class: 'bottom10',
+                icon: '../../images/mine/dianzan.png',
+                text: '打赏支持',
+                url: '../home/index',
+                function:''
+            }
         ]
     },
+
+    previewImage: function () {
+        wx.previewImage({
+          urls: ["http://119.45.207.194:8080/person/sr.jpg"],
+        });
+      },
+
 
     /**
      * 生命周期函数--监听页面加载
@@ -103,6 +102,13 @@ Page({
                     })
                 }
             }
+        })
+    },
+
+    aboutJZ: function () {
+        wx.showModal({
+            title: '记一笔',
+            content: '体验版本',
         })
     }
 })

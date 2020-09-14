@@ -6,9 +6,9 @@ const method = {
     post: 'POST',
     patch: 'PATCH',
 };
-const host = "127.0.0.1"; // 服务器地址
+const host = "www.chingchou.com"; // 服务器地址
 const port = "8001";    // 服务器端口
-const baseURL = `http://${ host }:${ port }/`;
+const baseURL = `http://${ host }/`;
 
 exports.getToken = function (tel) {
     return http({
@@ -202,6 +202,33 @@ exports.queryMoneyList = function (data) {
 exports.OpreateUser = function (data) {
     return http({
         url: baseURL + '/user/OpreateUser',
+        method: method.post,
+        data,
+        headers: {
+            token: tokenStorage.token,
+            expiresIn: tokenStorage.expiresIn
+        }
+    })
+};
+
+//意见反馈提交
+exports.feedBack = function (data) {
+    return http({
+        url: baseURL + '/user/feedBck',
+        method: method.post,
+        data,
+        headers: {
+            token: tokenStorage.token,
+            expiresIn: tokenStorage.expiresIn
+        }
+    })
+};
+
+
+//意见反馈提交
+exports.queryFeedBackList = function (data) {
+    return http({
+        url: baseURL + '/user/queryFeedBackList',
         method: method.post,
         data,
         headers: {

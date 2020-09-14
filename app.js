@@ -6,9 +6,9 @@ App({
         text:'1111',
         users: {
             openid:'',
-            tel: '18921483103',
+            tel: '',
             pwd: '',
-            nickname: '小熊熊',
+            nickname: '',
             avatarUrl: '',
         },
         c_out: [{

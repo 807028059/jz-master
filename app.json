@@ -2,6 +2,7 @@
   "pages": [
     "pages/bookkeeping/index",
     "pages/home/index",
+    "pages/feedBack/schoolBegin",
     "pages/person/index"
   ],
   "tabBar": {
@@ -24,6 +25,13 @@
         "text": "记帐"
       },
      
+      {
+        "pagePath": "pages/feedBack/schoolBegin",
+        "iconPath": "/images/statistics.png",
+        "selectedIconPath": "/images/statistics_HL.png",
+        "text": "反馈"
+      },
+
       {
         "pagePath": "pages/person/index",
         "iconPath": "/images/me.png",

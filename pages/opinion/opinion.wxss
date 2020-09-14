@@ -1,0 +1,22 @@
+/* pages/opinion/opinion.wxss */
+
+.border-solid-radius{width: 687rpx;height: 695rpx;border: 1px solid #D2D2D2;padding-top: 29rpx;padding-left: 30rpx;margin: 0 auto;margin-top: 34rpx;}
+.backC{
+  width: 640rpx;
+  height: 90rpx;
+  margin: 0 auto;
+  margin-top: 91rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  text-align: center;
+  line-height: 90rpx;
+  background-color:#F4D03F;
+  }
+
+  .save-btn {
+    background-color: #F4D03F;
+    color: #fff;
+    width: calc(100vw - 20px);
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }

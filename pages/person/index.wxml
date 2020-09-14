@@ -1,19 +1,26 @@
 <view class='container'>
   <view class='head'>
     <navigator hover-class="none" url='../profile/profile'>
-      <image class='avatar' src='{{avatar}}'></image>
+      <view class='avatar' > <open-data type='userAvatarUrl'></open-data></view>
     </navigator>
-    <text class='nickname'>{{nickname}}</text>
+    <view class = "nickname">
+      <open-data type="userNickName" lang="zh_CN"></open-data>
+    </view>
     <text class='tag'>Hi!, 你终于来了～</text>
   </view>
   <scroll-view class='list' scroll-y>
-    <navigator wx:for="{{mines}}" wx:key="{{item.text}}" class='item {{item.class}}' url='{{item.url}}'>
-      <image class='mine-item-icon' src='{{item.icon}}'></image>
-      <text class='mine-item-text'>{{item.text}}</text>
+    <navigator url="/pages/opinion/opinion" class='item bottom10'>
+      <image class='mine-item-icon' src='../../images/mine/setting_advice.svg'></image>
+      <text class='mine-item-text'>意见反馈</text>
     </navigator>
-    <navigator class='item bottom10' bindtap='handleLogout'>
-      <image class='mine-item-icon' src='./../../images/mine/setting_logout.svg'></image>
-      <text class='mine-item-text'>退出账号</text>
+    <navigator class='item bottom10' bindtap='aboutJZ'>
+      <image class='mine-item-icon' src='../../images/mine/setting_about.svg'></image>
+      <text class='mine-item-text'>关于记一笔</text>
     </navigator>
+    <navigator class='item bottom10' bindtap='previewImage'>
+      <image class='mine-item-icon' src='../../images/mine/dianzan.png'></image>
+      <text class='mine-item-text'>打赏支持</text>
+    </navigator>
+
   </scroll-view>
 </view>

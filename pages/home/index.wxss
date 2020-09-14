@@ -7,7 +7,7 @@
 text{
   color: aliceblue;
 }
-.info image{
+.infoImage{
   position: absolute;
   top: 0;
   left: 0;
@@ -76,9 +76,44 @@ text{
   color: #fff;
 }
 
-.card-image-container{
+.imageSize{
   align-items: center;/** 垂直居中*/
   display: flex;
   justify-content: center; /** flex 属性， 水平居中**/
 }
+
+
+
+.weui-btn-area{
+  position: absolute;
+  top: 200rpx;
+  margin-left: 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300rpx;
+
+  /* background:white; */
+}
+
+.dateY{
+  text-align: center;
+  color: aliceblue;
+}
+
+.dateM{
+  /* background: #ffff33; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dateM image{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+
 

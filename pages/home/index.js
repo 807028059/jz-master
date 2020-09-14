@@ -1,9 +1,10 @@
 const api = require('../../http/api')
+const utils = require('../../utils/util.js');
 
 let {users} = getApp().globalData;
 Page({
   data: {
-    monthJE: '1000',
+    monthJE: '0',
     todayIn: '0',
     todayOut: '0',
     list: [],
@@ -15,7 +16,11 @@ Page({
     },
     delBtnWidth: 160,
     isScroll: true,
-    windowHeight: 0
+    windowHeight: 0,
+    date: utils.getDate().toString(),
+    year: utils.getDate().split("-")[0],
+    month: utils.getDate().split("-")[1],
+    day: utils.getDate().split("-")[2]
   },
 
   onLoad: function (options) {
@@ -28,7 +33,6 @@ Page({
       }
     });
   },
-
 
   drawStart: function (e) {
     // console.log("drawStart");  
@@ -85,6 +89,18 @@ Page({
     }
   },
 
+  onReachBottom: function () { //触底开始下一页
+    var that=this;
+    var pagenum = Number(that.data.param.pageNum) +1; //获取当前页数并+1
+    that.setData({
+      param:{
+        pageNum:pagenum.toString(),
+        pageSize:'10'
+      }
+    })
+    that.onShow();//重新调用请求获取下一页数据
+  },
+
 
   //查询记账信息
   onShow:function(){
@@ -92,6 +108,7 @@ Page({
       title: '',
     });
     this.data.param.openid = users.openid;
+    this.data.param.date = this.data.date;
     this.data.param.type = this.data.current;
     var sendData = this.data.param;
     var self = this;
@@ -99,7 +116,7 @@ Page({
       console.log("==========>查询成功");
         var list = res.list;
         var object = res.object;
-        if(list.length == 0){
+        if(list.length == 0 && self.data.param.pageNum == '1'){
           self.setData({
             hiddenName:false,
             list:[],
@@ -108,8 +125,10 @@ Page({
             monthJE:object.monthJE
           })
         }else{
+          var arr1 = self.data.list; //从data获取当前datalist数组
+          arr1 = arr1.concat(list); //合并数组
           self.setData({
-            list:list,
+            list:arr1,
             hiddenName: true,
             todayOut:object.todayOut,
             todayIn:object.todayIn,
@@ -187,7 +206,18 @@ Page({
       list:[]
     });
     this.onShow();
+  },
+  bindDateChange: function(e) {
+    console.log(e);
+    var choseTime = e.detail.value.split("-");
+    this.setData({
+        date: e.detail.value.toString(),
+        year:choseTime[0],
+        month:choseTime[1],
+        day:choseTime[2],
+        param:{pageSize:"1",pageSize:"10"}
+    })
+    this.onShow();
   }
-
   
 })

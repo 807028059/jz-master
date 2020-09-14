@@ -9,7 +9,29 @@
 			<text>日收入：{{todayIn}}</text>
 			<text>日支出：{{todayOut}}</text>
 		</view>
-		<image src="/images/home/images.jpeg"></image>
+    <view class="weui-btn-area">
+        <picker mode="date" value="{{date}}" start="2018-09-01" end="2030-09-01" bindchange="bindDateChange">
+            
+            <view style="font-size:13px" class="dateY">{{year}}年</view>
+            <view class="dateM">
+                <view  class="monthNum">
+                    <text style="font-size:50rpx;font-weight:500" class="currentM">{{month}}</text>
+                </view>
+                <view class="monthText">
+                    <text >月</text>
+                </view>
+                <view  class="monthNum">
+                    <text style="font-size:50rpx;font-weight:500" class="currentM">{{day}}</text>
+                </view>
+                 <view class="monthText">
+                    <text >日</text>
+                    <image src="/images/down.png" />
+                </view>
+            </view>
+
+        </picker>
+    </view> 
+    <image class="infoImage" src="/images/home/images.jpeg"></image>
 	</view>
 
   <view class='home-menu'>
@@ -20,21 +42,18 @@
     </view>
   </view>
 
+	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.png" class="van-card__img in-image"></image></view>
 
-	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.png" class="van-card__img in-image card-image-container"></image></view>
-
-
-
-    <block wx:key="item" wx:for="{{list}}">
+  <block wx:key="item" wx:for="{{list}}">
       <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" 
       bindtouchend="drawEnd" style="right:{{item.right}}rpx">
         
-        <van-card centered="true"  price="{{item.money}}" desc="{{item.date}}" title="备注：{{item.notes}}" thumb="{{item.url}}">
+        <van-card centered="true"  price="{{item.money}}" desc="{{item.date}}" title="用途：{{item.name}}" thumb="{{item.url}}">
             <view class="footer" slot="footer"></view>
 	      </van-card>
 
         <view id="{{item.id}}" class="remove" bindtap="delItem">删除</view>
      </view>
-    </block>
+  </block>
 
 </view>
