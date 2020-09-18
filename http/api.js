@@ -8,7 +8,7 @@ const method = {
 };
 const host = "www.chingchou.com"; // 服务器地址
 const port = "8001";    // 服务器端口
-const baseURL = `http://${ host }/`;
+const baseURL = `https://${ host }/`;
 
 exports.getToken = function (tel) {
     return http({
