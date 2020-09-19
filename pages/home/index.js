@@ -98,12 +98,16 @@ Page({
         pageSize:'10'
       }
     })
-    that.onShow();//重新调用请求获取下一页数据
+    that.getJzList();//重新调用请求获取下一页数据
   },
 
+  onShow:function(){
+    this.data.list = [];
+    this.getJzList();
+  },
 
   //查询记账信息
-  onShow:function(){
+  getJzList:function(){
     wx.showLoading({
       title: '',
     });
@@ -152,6 +156,7 @@ Page({
     var sendData = {};
     sendData.id = e.currentTarget.id;
     sendData.openid = users.openid;
+    sendData.date = this.data.date;
     sendData.pageNum = "1";
     sendData.pageSize = "10";
     var self = this;
@@ -215,7 +220,7 @@ Page({
         year:choseTime[0],
         month:choseTime[1],
         day:choseTime[2],
-        param:{pageSize:"1",pageSize:"10"}
+        param:{pageNum:"1",pageSize:"10"}
     })
     this.onShow();
   }

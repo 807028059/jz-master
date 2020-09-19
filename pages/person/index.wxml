@@ -15,7 +15,7 @@
     </navigator>
     <navigator class='item bottom10' bindtap='aboutJZ'>
       <image class='mine-item-icon' src='../../images/mine/setting_about.svg'></image>
-      <text class='mine-item-text'>关于记一笔</text>
+      <text class='mine-item-text'>关于记账狗</text>
     </navigator>
     <navigator class='item bottom10' bindtap='previewImage'>
       <image class='mine-item-icon' src='../../images/mine/dianzan.png'></image>

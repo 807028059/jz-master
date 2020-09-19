@@ -57,6 +57,32 @@ Page({
       })
     }
 
+    var self=this;
+    wx.login({
+      success(res) {
+        //js调用登陆命令获取到code
+        if (res.code) {
+          //通过code调用自己服务接口获取到openid
+          var url = 'https://www.chingchou.com/user/getOpenId';
+          wx.request({
+            url: url,
+            data: {
+              code: res.code
+            },
+            success:function(wxInfo){
+              console.log(wxInfo);
+              //self.data.openid = wxInfo.data.openid
+              var body = JSON.parse(wxInfo.data.object.body);
+              users.openid = body.openid;
+              self.getPerson();
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
+
   },
   formatData(data) {
     let expenseIcon = [];
@@ -220,31 +246,7 @@ Page({
       })
     });
   },
-  onShow: function () {
-    var self=this;
-    wx.login({
-      success(res) {
-        //js调用登陆命令获取到code
-        if (res.code) {
-          //通过code调用自己服务接口获取到openid
-          wx.request({
-            url: 'https://api.sopans.com/third/wxOpenId.php',
-            data: {
-              code: res.code
-            },
-            success:function(wxInfo){
-              console.log(wxInfo);
-              //self.data.openid = wxInfo.data.openid
-              users.openid = wxInfo.data.openid== undefined?"zhouj":wxInfo.data.openid;
-              self.getPerson();
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
-    })
-  },
+
   //入库用户信息操作
   getPerson:function(){
     var sendData = {};

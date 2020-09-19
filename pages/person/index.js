@@ -107,7 +107,7 @@ Page({
 
     aboutJZ: function () {
         wx.showModal({
-            title: '记一笔',
+            title: '记账狗',
             content: '体验版本',
         })
     }
