@@ -45,8 +45,8 @@
 	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.png" class="van-card__img in-image"></image></view>
 
   <block wx:key="item" wx:for="{{list}}">
-      <view data-index='{{index}}' class="order-item" bindtouchstart="drawStart" bindtouchmove="drawMove" 
-      bindtouchend="drawEnd" style="right:{{item.right}}rpx">
+      <view data-index='{{index}}' class="order-item" catchtouchstart="drawStart" catchtouchmove="drawMove"  
+      catchtouchend="drawEnd" style="right:{{item.right}}rpx">
         
         <van-card centered="true"  price="{{item.money}}" desc="{{item.date}}" title="用途：{{item.name}}" thumb="{{item.url}}">
             <view class="footer" slot="footer"></view>

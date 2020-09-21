@@ -7,8 +7,13 @@ const method = {
     patch: 'PATCH',
 };
 const host = "www.chingchou.com"; // 服务器地址
+<<<<<<< HEAD
 const baseURL = `https://${ host }/`;
 //const baseURL = `http://127.0.0.1:8001/`;
+=======
+const port = "8001";    // 服务器端口
+const baseURL = `https://${ host }/`;
+>>>>>>> 8e5a006f3f5acd52ead8bbf14721df8e2c4c130c
 
 exports.getToken = function (tel) {
     return http({

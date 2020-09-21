@@ -157,6 +157,7 @@ Page({
     sendData.id = e.currentTarget.id;
     sendData.openid = users.openid;
     sendData.date = this.data.date;
+    sendData.type = this.data.current;
     sendData.pageNum = "1";
     sendData.pageSize = "10";
     var self = this;

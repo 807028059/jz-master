@@ -38,7 +38,8 @@ text{
 
 .order-item {
   height: 102rpx;
-  width: 100%;
+  width: 100vw;
+  /* overflow-x: hidden; */
   position: relative;
 }
 

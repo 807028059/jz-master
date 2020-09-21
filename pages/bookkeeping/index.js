@@ -214,6 +214,23 @@ Page({
     data.current === 0 ? sendData = data.data_out : sendData = data.data_in;
     sendData.openid = users.openid;
     sendData.type = data.current;
+    if (sendData.money == '' || sendData.money == undefined) {
+      wx.showToast({
+        duration: 3000,
+        title: "金额不能为空",
+        icon: 'none',
+      })
+      return;
+    }
+    if (!(/(^[0-9]*$)/.test(sendData.money))) {
+      wx.showToast({
+        duration: 3000,
+        title: "金额只能为数字",
+        icon: 'none',
+      })
+      return;
+    }
+
     api['OpreateMoney'](sendData).then((res) => {
       getApp().globalData.isRefreshBills = true;
       wx.showToast({

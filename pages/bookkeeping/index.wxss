@@ -1,21 +1,23 @@
 /* pages/bookkeeping/index.wxss */
 
 .container {
-  width: calc(100vw);
-  /* background-color: rgb(252, 250, 243); *//* overflow: hidden; *//* padding-top: 10px; */
+  width: 100vw;
+  overflow-x: hidden;
+  /* background-color: rgb(252, 250, 243); */
+  /* overflow: hidden; */
+  /* padding-top: 10px; */
 }
 
 .item-wrapper {
   padding: 10px 0;
-  width: calc(120vw);
+  width: 100vw;
   display: flex;
   flex-wrap: wrap;
 }
 
 .item {
-  width: 44px;
-  /* height: 44px; */
-  padding: 6px 16px;
+  width: 20%;
+  padding: 10px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,7 +107,8 @@
   padding: 6px 10px;
 }
 
-.botinput label, .botinput input {
+.botinput label,
+.botinput input {
   display: inline-block;
   /* vertical-align: middle; */
   height: 30px;
@@ -138,12 +141,12 @@
   background-color: #FDD835;
 }
 
-.imagesize{
-  display:flex;                   
-  justify-content: center;        
+.imagesize {
+  display: flex;
+  justify-content: center;
 }
-.imagesize image { 
-  width:400rpx;
-  height:400rpx;
-  }
- 
+
+.imagesize image {
+  width: 400rpx;
+  height: 400rpx;
+}
