@@ -46,7 +46,7 @@
 
   <block wx:key="item" wx:for="{{list}}">
     <view class="order-item" style="right:{{item.right}}rpx">
-      <view data-index='{{index}}' catchtouchstart="drawStart" catchtouchmove="drawMove"  catchtouchend="drawEnd" >
+      <view data-index='{{index}}' catchtouchstart="drawStart" catchtouchmove="drawMove"  catchtouchend="drawEnd" class="moveList">
         <van-card centered="true"  price="{{item.money}}" desc="{{item.date}}" title="用途：{{item.name}}" thumb="{{item.url}}">
           <view class="footer" slot="footer"></view>
 	      </van-card>
