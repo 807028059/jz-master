@@ -1,7 +1,4 @@
-<!--pages/statistics/index.wxml-->
-<view>
-
-</view>
+<!--index.wxml-->
 <view class="box">
-  <echarts id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" ></echarts>
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
 </view>

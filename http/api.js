@@ -7,13 +7,9 @@ const method = {
     patch: 'PATCH',
 };
 const host = "www.chingchou.com"; // 服务器地址
-<<<<<<< HEAD
 const baseURL = `https://${ host }/`;
 //const baseURL = `http://127.0.0.1:8001/`;
-=======
-const port = "8001";    // 服务器端口
-const baseURL = `https://${ host }/`;
->>>>>>> 8e5a006f3f5acd52ead8bbf14721df8e2c4c130c
+
 
 exports.getToken = function (tel) {
     return http({
@@ -241,4 +237,17 @@ exports.queryFeedBackList = function (data) {
             expiresIn: tokenStorage.expiresIn
         }
     })
+};
+
+//统计视图查询
+exports.getMoneyEcharts = function (data) {
+  return http({
+    url: baseURL + '/money/getMoneyEcharts',
+    method: method.post,
+    data,
+    headers: {
+      token: tokenStorage.token,
+      expiresIn: tokenStorage.expiresIn
+    }
+  })
 };

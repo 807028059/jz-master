@@ -2,6 +2,7 @@
   "pages": [
     "pages/bookkeeping/index",
     "pages/home/index",
+    "pages/statistics/index",
     "pages/feedBack/schoolBegin",
     "pages/person/index"
   ],
@@ -24,11 +25,18 @@
         "selectedIconPath": "/images/bookkeeping_HL.png",
         "text": "记帐"
       },
+
+      {
+        "pagePath": "pages/statistics/index",
+        "iconPath": "/images/statistics.png",
+        "selectedIconPath": "/images/statistics_HL.png",
+        "text": "统计"
+      },
      
       {
         "pagePath": "pages/feedBack/schoolBegin",
-        "iconPath": "/images/statistics.png",
-        "selectedIconPath": "/images/statistics_HL.png",
+        "iconPath": "/images/chart.png",
+        "selectedIconPath": "/images/chart_HL.png",
         "text": "反馈"
       },
 

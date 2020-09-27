@@ -4,6 +4,10 @@ var config = require('./config/config.js');
 App({
     globalData: {
         text:'1111',
+        ym: [],
+        jz: [],
+        sr: [],
+        zc: [],
         users: {
             openid:'',
             tel: '',
