@@ -45,15 +45,14 @@
 	<view class="imageSize" hidden="{{hiddenName}}"><image mode="aspectFit" src="/images/noData.png" class="van-card__img in-image"></image></view>
 
   <block wx:key="item" wx:for="{{list}}">
-      <view data-index='{{index}}' class="order-item" catchtouchstart="drawStart" catchtouchmove="drawMove"  
-      catchtouchend="drawEnd" style="right:{{item.right}}rpx">
-        
+    <view class="order-item" style="right:{{item.right}}rpx">
+      <view data-index='{{index}}' catchtouchstart="drawStart" catchtouchmove="drawMove"  catchtouchend="drawEnd" >
         <van-card centered="true"  price="{{item.money}}" desc="{{item.date}}" title="用途：{{item.name}}" thumb="{{item.url}}">
-            <view class="footer" slot="footer"></view>
+          <view class="footer" slot="footer"></view>
 	      </van-card>
-
-        <view id="{{item.id}}" class="remove" bindtap="delItem">删除</view>
      </view>
+     <view id="{{item.id}}" class="remove" bindtap="delItem">删除</view>
+    </view>
   </block>
 
 </view>

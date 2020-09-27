@@ -1,6 +1,6 @@
 <!--pages/schoolBegin/schoolBegin.wxml-->
 <view class='scroll_view_border'>
-    <view class="srcoll_view" bindtap="textclick">欢迎大家使用记账狗，有问题欢迎反馈哦~</view>
+    <view class="srcoll_view" bindtap="textclick">公告：欢迎大家使用记账狗，有问题欢迎反馈哦~</view>
   </view>
 
 <view class='margin2020 '>
@@ -14,7 +14,7 @@
           </view>
           <view class='width80'>
             <view class='font-wei500 font-size15'>匿名用户</view>
-            <view class='font-size12 font-wei400 colorFFF'>{{item.createtime}}</view>
+            <view class='font-size12 font-wei400 colorFFF'>{{util.sub(item.createtime)}}</view>
           </view>
         </view>
         <view class='school-text font-size14 font-wei400 padding020 margin-top20'>
@@ -23,4 +23,11 @@
       </view>
   </block>
 </view>
+
+<wxs module="util">
+    var sub = function(val) {
+        return val.substring(0, 10)
+    }
+    module.exports.sub = sub;
+</wxs>  
 
