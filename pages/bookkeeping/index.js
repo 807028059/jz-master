@@ -233,9 +233,10 @@ Page({
 
     api['OpreateMoney'](sendData).then((res) => {
       getApp().globalData.isRefreshBills = true;
+      let msg = res.retMsg;
       wx.showToast({
         duration: 3000,
-        title: "记账成功",
+        title: msg,
         icon: 'none',
       })
       let data_out = this.data.data_out;

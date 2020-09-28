@@ -150,6 +150,10 @@ Page({
     api['getMoneyEcharts'](sendData).then((res) => {
       console.log("==========>查询成功");
       var list = res.list;
+      ym = [];
+      jz = [];
+      sr = [];
+      zc = [];
       for(var i=0;i<list.length;i++){
         ym.push(list[i].ym);
         jz.push(list[i].jz);

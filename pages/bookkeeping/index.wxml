@@ -30,11 +30,11 @@
         </view>
         <view class='botinput line'>
           <label>备注：</label>
-          <input placeholder='点我写备注' type='text' value='{{data_out.notes}}' bindinput='watchNotes'></input>
+          <input placeholder='点我写备注,非必填' type='text' value='{{data_out.notes}}' bindinput='watchNotes'></input>
         </view>
         <view class='botinput line'>
           <label>支出：</label>
-          <input placeholder='点我写支出' type='text' value='{{data_out.money}}' bindinput='watchMoney'></input>
+          <input placeholder='点我写支出,不支持小数哦' type='text' value='{{data_out.money}}' bindinput='watchMoney'></input>
         </view>
         <view>
           <button class='save-btn' bindtap='handleSave'>保存</button>
