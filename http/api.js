@@ -251,3 +251,15 @@ exports.getMoneyEcharts = function (data) {
     }
   })
 };
+
+exports.queryMoneyCount = function (data) {
+  return http({
+    url: baseURL + '/money/queryMoneyCount',
+    method: method.post,
+    data,
+    headers: {
+      token: tokenStorage.token,
+      expiresIn: tokenStorage.expiresIn
+    }
+  })
+};

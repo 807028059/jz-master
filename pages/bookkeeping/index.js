@@ -222,10 +222,12 @@ Page({
       })
       return;
     }
-    if (!(/(^[0-9]*$)/.test(sendData.money))) {
+   
+    var check = sendData.money.split(".");
+    if (check.length>2) {
       wx.showToast({
         duration: 3000,
-        title: "金额只能为数字",
+        title: "请正确输入金额",
         icon: 'none',
       })
       return;

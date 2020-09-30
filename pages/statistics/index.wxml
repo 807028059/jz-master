@@ -1,4 +1,15 @@
 <!--index.wxml-->
-<view class="box">
-  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+<view wx:if="{{flag == true}}" class="none">
+  <image src="/images/other/feedback.png" style="width: 22px; height: 22px;"></image>
+  记录一笔，开启统计~
 </view>
+
+<view class="box" wx:else>
+  <view class="title">资产状况(近5月)</view>
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+
+  <view class="title">使用统计(Top5)</view>
+  <ec-canvas id="mychart-bin-bar" canvas-id="mychart-bar" ec="{{ pie }}"></ec-canvas>
+</view>
+
+

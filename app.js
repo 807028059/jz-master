@@ -3,11 +3,13 @@ var utils = require('./utils/util.js');
 var config = require('./config/config.js');
 App({
     globalData: {
-        text:'1111',
         ym: [],
         jz: [],
         sr: [],
         zc: [],
+        mz:[],
+        color:[],
+        pieData:[],
         users: {
             openid:'',
             tel: '',

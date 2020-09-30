@@ -108,7 +108,7 @@ Page({
     aboutJZ: function () {
         wx.showModal({
             title: '记账狗',
-            content: '体验版本',
+            content: '当前版本为体验版本，新功能将会陆续上线，请持续关注',
         })
     }
 })
