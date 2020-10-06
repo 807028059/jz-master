@@ -17,6 +17,15 @@ App({
             nickname: '',
             avatarUrl: '',
         },
+        mDetail:{
+            id:"",
+            week:"",
+            date:"",
+            notes:"",
+            money:"",
+            type:"",
+            iconSelected:""
+        },
         c_out: [{
             id:1,
             text: '餐饮',

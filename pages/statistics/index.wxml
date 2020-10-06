@@ -8,7 +8,16 @@
   <view class="title">资产状况(近5月)</view>
   <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
 
-  <view class="title">使用统计(Top5)</view>
+  <view class="title">支出统计(Top5)
+    <view class="date-text">
+      <picker mode="date" fields="month" value="{{date}}" start="1901-09-01" end="3050-09-01" bindchange="bindDateChange">
+          <view class='head-text'>
+              <text>{{date.year}}年</text>
+              <text class='arrow'>{{date.month}}月</text>
+          </view>
+      </picker>
+    </view>
+  </view>
   <ec-canvas id="mychart-bin-bar" canvas-id="mychart-bar" ec="{{ pie }}"></ec-canvas>
 </view>
 

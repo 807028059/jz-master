@@ -1,0 +1,21 @@
+<!-- 关于 -->
+<view class='container'>
+  <scroll-view>
+    <view class='head'>
+      <image class='logo avatar' src='./../../images/other/logo.png'></image>
+      <text class='appName'>记账狗</text>
+      <text class='version'>版本号：V1.0.12</text>
+    </view>
+    <view class='section'>
+      <view class='item'>
+        <view>2020-10-06</view>
+        <view>修改颜色显示</view>
+      </view>
+
+      <view class='item'>
+        <view>2020-10-05</view>
+        <view>列表样式改版</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

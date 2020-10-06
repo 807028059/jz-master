@@ -13,9 +13,13 @@
       <image class='mine-item-icon' src='../../images/mine/setting_advice.svg'></image>
       <text class='mine-item-text'>意见反馈</text>
     </navigator>
-    <navigator class='item bottom10' bindtap='aboutJZ'>
-      <image class='mine-item-icon' src='../../images/mine/setting_about.svg'></image>
+    <navigator class='item bottom10' bindtap="aboutJZ">
+      <image class='mine-item-icon' src='../../images/mine/setting_help.svg'></image>
       <text class='mine-item-text'>关于记账狗</text>
+    </navigator>
+    <navigator url="/pages/about/about" class='item bottom10'>
+      <image class='mine-item-icon' src='../../images/mine/setting_about.svg'></image>
+      <text class='mine-item-text'>版本</text>
     </navigator>
     <navigator class='item bottom10' bindtap='previewImage'>
       <image class='mine-item-icon' src='../../images/mine/dianzan.png'></image>

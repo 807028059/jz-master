@@ -14,8 +14,7 @@
   font-size: 25rpx;
   background: #F0FFFF;
   height: 20rpx;
-  width: 100%;
-
+  display: flex;
 }
 
 .none {
@@ -25,4 +24,12 @@
   position: fixed;
   font-size: 33rpx;
   color: #ccc;
+}
+
+.head-text {
+  position: relative;
+}
+
+.date-text {
+  flex-direction: row-reverse;
 }

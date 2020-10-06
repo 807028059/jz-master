@@ -2,7 +2,7 @@
 // pages/addition/addition.js
 const utils = require('../../utils/util.js');
 const api = require('../../http/api.js');
-let { c_out, c_in, users, text } = getApp().globalData;
+let { c_out, c_in, users, mDetail } = getApp().globalData;
 Page({
   data: {
     openid:'',
@@ -13,75 +13,60 @@ Page({
     categories_out: [],
     data_out: {
       date: utils.getDate(),
-      getWeek: utils.getWeek(),
+      week: utils.getWeek(),
       iconSelected: 1,
       notes: '',
       money: '',
     },
     data_in: {
       date: utils.getDate(),
-      getWeek: utils.getWeek(),
+      week: utils.getWeek(),
       iconSelected: 19,
       notes: '',
       money: '',
     },
   },
-  onLoad: function (options) {
-    if (options.data) {
-      let res = JSON.parse(options.data);
-      let { type } = res;
-      let data = {};
-      let current = 0;
-      if (type === 0) {
-        current = 0;
-        data.data_out = res;
-        this.setData({
-          current,
-          data_out: data.data_out,
-          isUpdate: true,
-          url: options.route
-        })
-      } else {
-        current = 1;
-        data.data_in = res;
-        this.setData({
-          current,
-          data_in: data.data_in,
-          isUpdate: true,
-          url: options.route
-        })
-      }
-    } else {
+
+  onLoad: function () {
+    if(mDetail.type == "0"){
       this.setData({
-        url: options.route
+        current: 0,
+        data_out: mDetail
+      })
+    }else if(mDetail.type == "1"){
+      this.setData({
+        current: 1,
+        data_out: mDetail
       })
     }
 
-    var self=this;
-    wx.login({
-      success(res) {
-        //js调用登陆命令获取到code
-        if (res.code) {
-          //通过code调用自己服务接口获取到openid
-          var url = 'https://www.chingchou.com/user/getOpenId';
-          wx.request({
-            url: url,
-            data: {
-              code: res.code
-            },
-            success:function(wxInfo){
-              console.log(wxInfo);
-              //self.data.openid = wxInfo.data.openid
-              var body = JSON.parse(wxInfo.data.object.body);
-              users.openid = body.openid;
-              self.getPerson();
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
+    if(users.openid == ""){
+      var self=this;
+      wx.login({
+        success(res) {
+          //js调用登陆命令获取到code
+          if (res.code) {
+            //通过code调用自己服务接口获取到openid
+            var url = 'https://www.chingchou.com/user/getOpenId';
+            wx.request({
+              url: url,
+              data: {
+                code: res.code
+              },
+              success:function(wxInfo){
+                console.log(wxInfo);
+                //self.data.openid = wxInfo.data.openid
+                var body = JSON.parse(wxInfo.data.object.body);
+                users.openid = body.openid;
+                self.getPerson();
+              }
+            })
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
         }
-      }
-    })
+      })
+    }
 
   },
   formatData(data) {
@@ -144,13 +129,13 @@ Page({
     const data_in = this.data.data_in;
     if (this.data.current === 0) {
       data_out.date = e.detail.value;
-      data_out.getWeek = utils.getWeek(e.detail.value);
+      data_out.week = utils.getWeek(e.detail.value);
       this.setData({
         data_out
       })
     } else {
       data_in.date = e.detail.value;
-      data_in.getWeek = utils.getWeek(e.detail.value);
+      data_in.week = utils.getWeek(e.detail.value);
       this.setData({
         data_in
       })
@@ -244,6 +229,7 @@ Page({
       let data_out = this.data.data_out;
       let data_in = this.data.data_in;
       if (this.data.current === 0) {
+        data_out.id = '';
         data_out.money = '';
         data_out.notes = '';
         data_out.iconSelected = '1';
@@ -251,6 +237,7 @@ Page({
           data_out
         })
       } else {
+        data_in.id = '';
         data_in.money = '';
         data_in.notes = '';
         data_in.iconSelected = '19';
@@ -280,6 +267,28 @@ Page({
         icon: 'none',
       })
     }); 
+  },
+
+  onHide:function(){
+      this.setData({
+        current: 0,
+        data_out: {
+          id: "",
+          date: utils.getDate(),
+          week: utils.getWeek(),
+          iconSelected: 1,
+          notes: '',
+          money: '',
+        },
+        data_in: {
+          id: "",
+          date: utils.getDate(),
+          week: utils.getWeek(),
+          iconSelected: 19,
+          notes: '',
+          money: '',
+        }
+      })
   }
 
 });

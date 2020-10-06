@@ -1,0 +1,11 @@
+<view wx:for="{{data}}" wx:key="{{item}}">
+    <view class='main-head'>
+        <text style="color:black">{{item.date}} {{item.week}}</text>
+        <text style="color:black">{{item.type === '0' ? '支出：': '收入：'}}{{item.total}}¥</text>
+    </view>
+    <view class='main-body'>
+        <bill-list-item wx:for="{{item.list}}" wx:key="{{item}}" data-item="{{ item }}"
+                        data-id="{{item.id}}" data="{{ item }}" bindlongpress='handleDelete'
+                        bindtap='handleModify'></bill-list-item>
+    </view>
+</view>

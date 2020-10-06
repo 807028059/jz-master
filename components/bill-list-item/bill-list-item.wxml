@@ -1,0 +1,12 @@
+<view class="main-body-item">
+    <view class='main-bi-l' data-id="{{data.id}}">
+        <image data-id="{{data.id}}" class="icon bg_{{data.type === '0' ? 'green': 'red'}}"
+               src='./../../images/main/{{data.url}}'></image>
+        <view class='texts' data-id="{{data.id}}">
+            <text data-id="{{data.id}}">{{data.type === '0' ? '用途：': '来源：'}}{{data.name}}</text>
+            <text data-id="{{data.id}}">备注：{{data.notes}}</text>
+        </view>
+    </view>
+    <text data-id="{{data.id}}" class='{{data.type === 0 ? "green": "red"}}'>{{data.type === '0' ?'-' : '+'}}{{data.money}}¥
+    </text>
+</view>

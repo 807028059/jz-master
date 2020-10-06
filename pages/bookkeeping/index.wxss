@@ -58,7 +58,7 @@
   left: 50%;
   transform: translateX(-50%);
   top: 0;
-  width: 99%;
+  width: 95%;
   z-index: 999;
   box-shadow: 0 3px 10px #ccc;
   /* margin-bottom: 10px; */

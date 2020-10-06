@@ -5,8 +5,8 @@ let {users} = getApp().globalData;
 Page({
   data: {
     monthJE: '0',
-    todayIn: '0',
-    todayOut: '0',
+    monthIn: '0',
+    monthOut: '0',
     list: [],
     hiddenName:true, 
     current: "0",
@@ -17,10 +17,9 @@ Page({
     delBtnWidth: 160,
     isScroll: true,
     windowHeight: 0,
-    date: utils.getDate().toString(),
+    date: utils.getDate().substring(0,7),
     year: utils.getDate().split("-")[0],
-    month: utils.getDate().split("-")[1],
-    day: utils.getDate().split("-")[2]
+    month: utils.getDate().split("-")[1]
   },
 
   onLoad: function (options) {
@@ -89,17 +88,17 @@ Page({
     }
   },
 
-  onReachBottom: function () { //触底开始下一页
-    var that=this;
-    var pagenum = Number(that.data.param.pageNum) +1; //获取当前页数并+1
-    that.setData({
-      param:{
-        pageNum:pagenum.toString(),
-        pageSize:'10'
-      }
-    })
-    that.getJzList();//重新调用请求获取下一页数据
-  },
+  // onReachBottom: function () { //触底开始下一页
+  //   var that=this;
+  //   var pagenum = Number(that.data.param.pageNum) +1; //获取当前页数并+1
+  //   that.setData({
+  //     param:{
+  //       pageNum:pagenum.toString(),
+  //       pageSize:'10'
+  //     }
+  //   })
+  //   that.getJzList();//重新调用请求获取下一页数据
+  // },
 
   onShow:function(){
     this.data.list = [];
@@ -116,80 +115,17 @@ Page({
     this.data.param.type = this.data.current;
     var sendData = this.data.param;
     var self = this;
-    api['queryMoneyList'](sendData).then((res) => {
+    api['queryMonthList'](sendData).then((res) => {
       console.log("==========>查询成功");
         var list = res.list;
         var object = res.object;
-        if(list.length == 0 && self.data.param.pageNum == '1'){
-          self.setData({
-            hiddenName:false,
-            list:[],
-            todayOut:object.todayOut,
-            todayIn:object.todayIn,
-            monthJE:object.monthJE
-          })
-        }else{
-          var arr1 = self.data.list; //从data获取当前datalist数组
-          arr1 = arr1.concat(list); //合并数组
-          self.setData({
-            list:arr1,
-            hiddenName: true,
-            todayOut:object.todayOut,
-            todayIn:object.todayIn,
-            monthJE:object.monthJE
-          })
-        }
-    }).catch(() => {
-      wx.showToast({
-        duration: 3000,
-        title: "出错了",
-        icon: 'none',
-      })
-    });
-  },
-
-  //记账删除
-  delItem: function(e) {
-    wx.showLoading({
-      title: '',
-    });
-    var sendData = {};
-    sendData.id = e.currentTarget.id;
-    sendData.openid = users.openid;
-    sendData.date = this.data.date;
-    sendData.type = this.data.current;
-    sendData.pageNum = "1";
-    sendData.pageSize = "10";
-    var self = this;
-    api['removeMoney'](sendData).then((res) => {
-      if(res.retCode == "0"){
-        console.log("==========>删除成功");
-        var list = res.list;
-        var object = res.object;
-        if (list.length == 0) {
-          self.setData({
-            list:[],
-            hiddenName: false,
-            todayOut:object.todayOut,
-            todayIn:object.todayIn,
-            monthJE:object.monthJE
-          })
-        } else {
-          self.setData({
-            list:list,
-            hiddenName: true,
-            todayOut:object.todayOut,
-            todayIn:object.todayIn,
-            monthJE:object.monthJE
-          })
-        }
-      }else{
-        wx.showToast({
-          duration: 3000,
-          title: res.data.retMsg,
-          icon: 'none',
+        self.setData({
+          list:list,
+          hiddenName: true,
+          monthOut:object.monthOut,
+          monthIn:object.monthIn,
+          monthJE:object.monthJE
         })
-      }
     }).catch(() => {
       wx.showToast({
         duration: 3000,
@@ -206,6 +142,7 @@ Page({
     });
     this.onShow();
   },
+
   inClick: function () {
     this.setData({
       current: "1",
@@ -213,6 +150,7 @@ Page({
     });
     this.onShow();
   },
+
   bindDateChange: function(e) {
     console.log(e);
     var choseTime = e.detail.value.split("-");
@@ -220,10 +158,11 @@ Page({
         date: e.detail.value.toString(),
         year:choseTime[0],
         month:choseTime[1],
-        day:choseTime[2],
         param:{pageNum:"1",pageSize:"10"}
     })
     this.onShow();
+  },
+  refresh() {
+      this.getJzList(this);
   }
-  
 })
