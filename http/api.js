@@ -13,21 +13,9 @@ const baseURL = `https://${ host }/`;
 
 exports.getCategories = function (data) {
     return http({
-        url: baseURL + 'categories',
-        method: method.get,
-        data,
-        headers: {
-            token: tokenStorage.token,
-            expiresIn: tokenStorage.expiresIn
-        }
-    })
-};
-
-exports.delCategories = function (_id) {
-    return http({
-        url: baseURL + 'categories/del',
+        url: baseURL + 'category/getCategorys',
         method: method.post,
-        data: {_id},
+        data,
         headers: {
             token: tokenStorage.token,
             expiresIn: tokenStorage.expiresIn
@@ -37,7 +25,7 @@ exports.delCategories = function (_id) {
 
 exports.saveCategories = function (data) {
     return http({
-        url: baseURL + 'categories',
+        url: baseURL + 'category/opreateCategories',
         method: method.post,
         data,
         headers: {
@@ -46,6 +34,20 @@ exports.saveCategories = function (data) {
         }
     })
 };
+
+exports.delCategories = function (id) {
+    return http({
+        url: baseURL + 'category/delCategories',
+        method: method.post,
+        data: {id},
+        headers: {
+            token: tokenStorage.token,
+            expiresIn: tokenStorage.expiresIn
+        }
+    })
+};
+
+
 
 //=================  zhouj start =======================
 

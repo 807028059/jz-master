@@ -1,6 +1,7 @@
 // 1、引入依赖脚本
 import * as echarts from '../../ec-canvas/echarts';
 const api = require('../../http/api');
+const utils = require('../../utils/util.js');
 let { mz, color,pieData,ym, jz, zc, sr,users} = getApp().globalData;
 let Chart = [];
 
@@ -13,9 +14,28 @@ Page({
       lazyLoad: true // 延迟加载
     },
     param:{
-      openid:""
+      openid:"",
+      date: utils.getDate().substring(0,7)
+    },
+    date: {
+      year: utils.getYear(),
+      month: utils.getMonth()
     },
     flag:false
+  },
+
+  bindDateChange(e) {
+    console.log()
+    let date = e.detail.value;
+    let arr = date.split('-');
+    this.setData({
+        date: {
+            year: arr[0],
+            month: arr[1]
+        }
+    });
+    this.echartsComponnet2 = this.selectComponent('#mychart-bin-bar');
+    this.queryMoneyCount();
   },
 
   onShow:function(){
@@ -73,6 +93,7 @@ Page({
       title: '',
     });
     this.data.param.openid = users.openid;
+    this.data.param.date = this.data.date.year+"-"+this.data.date.month;
     var sendData = this.data.param;
     var self = this;
     api['queryMoneyCount'](sendData).then((res) => {
@@ -81,10 +102,20 @@ Page({
       mz=[];
       color=[];
       pieData = list;
-      for (var i = 0; i < list.length; i++) {
-        mz.push(list[i].name);
+      if(list.length == 0){
+        mz.push("暂无数据");
         color.push(self.getColor());
+        var obj = {};
+        obj.name = "暂无数据";
+        obj.value = 0;
+        pieData.push(obj);
+      }else{
+        for (var i = 0; i < list.length; i++) {
+          mz.push(list[i].name);
+          color.push(self.getColor());
+        }
       }
+      
       if (!Chart[1]) {
         this.init_echarts(2); //初始化图表
       } else {
@@ -279,6 +310,17 @@ Page({
       ]
     };
     return option;
+  },
+  onHide:function(){
+    this.setData({
+      param:{
+        date: utils.getDate().substring(0,7)
+      },
+      date: {
+        year: utils.getYear(),
+        month: utils.getMonth()
+      },
+    })
   }
 });
 

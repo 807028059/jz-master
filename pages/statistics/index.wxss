@@ -31,5 +31,19 @@
 }
 
 .date-text {
-  flex-direction: row-reverse;
+  padding-left:50px
+}
+
+.arrow::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 6px solid black;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  position: relative;
+  top: 4px;
+  left: 4px;
 }

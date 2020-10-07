@@ -25,7 +25,7 @@ const getYear = () => new Date().getFullYear();
  */
 const getMonth = () => {
     var m = new Date().getMonth() + 1;
-    return m > 10 ? m : "0" + m;
+    return m >= 10 ? m : "0" + m;
 }
 
 /**

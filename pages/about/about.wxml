@@ -4,17 +4,24 @@
     <view class='head'>
       <image class='logo avatar' src='./../../images/other/logo.png'></image>
       <text class='appName'>记账狗</text>
-      <text class='version'>版本号：V1.0.12</text>
+      <text class='version'>版本号：V1.0.15</text>
     </view>
     <view class='section'>
       <view class='item'>
+        <view>2020-10-07</view>
+        <view>1、新增类别设置，可以个性化配置</view>
+        <view>2、记账类别改为动态查询</view>
+      </view>
+
+      <view class='item'>
         <view>2020-10-06</view>
-        <view>修改颜色显示</view>
+        <view>1、统计视图新增时间选择器</view>
+        <view>2、修改颜色显示</view>
       </view>
 
       <view class='item'>
         <view>2020-10-05</view>
-        <view>列表样式改版</view>
+        <view>1、列表样式改版</view>
       </view>
     </view>
   </scroll-view>

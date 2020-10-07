@@ -13,8 +13,9 @@
     <swiper-item class='swiper-item'>
       <view class='item-wrapper'>
         <view wx:for="{{categories_out}}" class='item' wx:key="index">
-          <image style="width: 30rpx;height: 30rpx;" class='{{data_out.iconSelected == item.id ? "red": "blue"}}' bindtap='iconClick' data-id='{{item.id}}' src='{{item.icon }}'></image>
-          <text>{{item.text}}</text>
+          <image style="width: 30rpx;height: 30rpx;" class='{{data_out.iconSelected == "" ? index == 0?"red": "blue": data_out.iconSelected == item.id?"red": "blue"}}' 
+                bindtap='iconClick' data-id='{{item.id}}' src='./../../images/main/{{item.url}}'></image>
+          <text>{{item.name}}</text>
         </view>
       </view>
       <view class='bot'>
@@ -23,8 +24,8 @@
           <picker mode="date" fields="day" value="{{data_out.date}}" start="1996-09-01" end="3050-09-01" bindchange="bindDateChange">
             <view>
               <text class="picker-text">
-            {{data_out.date}}
-          </text>
+                {{data_out.date}}
+              </text>
             </view>
           </picker>
         </view>
@@ -46,8 +47,9 @@
     <swiper-item class='swiper-item'>
       <view class='item-wrapper'>
         <view wx:for="{{categories_in}}" class='item' wx:key="index">
-          <image  style="width: 30rpx;height: 30rpx;"  class='{{data_in.iconSelected == item.id ? "red": "blue"}}' bindtap='iconClick' data-id='{{item.id}}' src='{{item.icon }}'></image>
-          <text>{{item.text}}</text>
+          <image  style="width: 30rpx;height: 30rpx;"  class='{{data_in.iconSelected == "" ? index == 0?"red": "blue": data_in.iconSelected == item.id?"red": "blue"}}' 
+                bindtap='iconClick' data-id='{{item.id}}' src='./../../images/main/{{item.url}}'></image>
+          <text>{{item.name}}</text>
         </view>
       </view>
       <view class='bot'>

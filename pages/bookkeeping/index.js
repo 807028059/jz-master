@@ -14,14 +14,14 @@ Page({
     data_out: {
       date: utils.getDate(),
       week: utils.getWeek(),
-      iconSelected: 1,
+      iconSelected: "",
       notes: '',
       money: '',
     },
     data_in: {
       date: utils.getDate(),
       week: utils.getWeek(),
-      iconSelected: 19,
+      iconSelected: "",
       notes: '',
       money: '',
     },
@@ -36,7 +36,7 @@ Page({
     }else if(mDetail.type == "1"){
       this.setData({
         current: 1,
-        data_out: mDetail
+        data_in: mDetail
       })
     }
 
@@ -59,6 +59,7 @@ Page({
                 var body = JSON.parse(wxInfo.data.object.body);
                 users.openid = body.openid;
                 self.getPerson();
+                self.loadData();
               }
             })
           } else {
@@ -67,46 +68,81 @@ Page({
         }
       })
     }
+  },
 
+  onShow:function(){
+    if(users.openid != ""){
+      wx.showLoading({
+        title: '加载中',
+      })
+      wx.hideLoading({
+        complete: (res) => {
+          this.loadData();
+        },
+      })
+      
+    }
+  },
+
+  loadData: function () {
+    let data = {
+      openid: users.openid
+    };
+    api.getCategories(data).then((res) => {
+      let data = this.formatData(res);
+      if(data.incomeIcon.length == 0){
+        wx.showToast({
+          duration: 4000,
+          title: "您未设置收入类别，可先前往设置，默认其它",
+          icon: 'none',
+        })
+      }else{
+        if(mDetail.id == ""){
+          this.setData({
+            'data_in.iconSelected':data.incomeIcon[0].id
+           })
+        }
+      }
+      if(data.expenseIcon == 0){
+        wx.showToast({
+          duration: 4000,
+          title: "您未设置支出类别，可先前往设置，默认其它",
+          icon: 'none',
+        })
+      }else{
+        if(mDetail.id == ""){
+          this.setData({
+            'data_out.iconSelected':data.expenseIcon[0].id
+          })
+        }
+      }
+      this.setData({
+        categories_in: data.incomeIcon,
+        categories_out: data.expenseIcon
+      })
+    }).catch((errMsg) => {
+      console.log(errMsg);
+    });
+    // this.setData({
+    //   categories_in: c_in,
+    //   categories_out: c_out
+    // })
   },
   formatData(data) {
     let expenseIcon = [];
     let incomeIcon = [];
-    Object.assign(expenseIcon, c_out);
-    Object.assign(incomeIcon, c_in);
-    data.map((item) => {
-      item.data.id = item._id;
-      item.type === 0 ? expenseIcon.push(item.data) : incomeIcon.push(item.data);
+    data.list.map((item) => {
+        item.type === '0' ? expenseIcon.push(item) : incomeIcon.push(item);
     });
     return {
-      expenseIcon,
-      incomeIcon
+        expenseIcon,
+        incomeIcon
     }
-  },
-  loadData: function () {
-    let data = {
-      tel: users.tel
-    };
-    // api.getCategories(data).then((res) => {
-    //   let data = this.formatData(res);
-    //   this.setData({
-    //     categories_in: data.incomeIcon,
-    //     categories_out: data.expenseIcon
-    //   })
-    //   console.log(categories_in)
-    // }).catch((errMsg) => {
-    //   console.log(errMsg);
-    // });
-    this.setData({
-      categories_in: c_in,
-      categories_out: c_out
-    })
-  },
+},
   onReady: function () {
     wx.setNavigationBarTitle({
       title: '记一笔',
     });
-    this.loadData();
   },
   outClick: function () {
     this.setData({
@@ -232,7 +268,6 @@ Page({
         data_out.id = '';
         data_out.money = '';
         data_out.notes = '';
-        data_out.iconSelected = '1';
         this.setData({
           data_out
         })
@@ -240,7 +275,6 @@ Page({
         data_in.id = '';
         data_in.money = '';
         data_in.notes = '';
-        data_in.iconSelected = '19';
         this.setData({
           data_in
         })
@@ -248,7 +282,7 @@ Page({
     }).catch((errMsg) => {
       wx.showToast({
         duration: 3000,
-        title: errMsg,
+        title: "出错了",
         icon: 'none',
       })
     });
@@ -276,7 +310,7 @@ Page({
           id: "",
           date: utils.getDate(),
           week: utils.getWeek(),
-          iconSelected: 1,
+          iconSelected: "",
           notes: '',
           money: '',
         },
@@ -284,11 +318,12 @@ Page({
           id: "",
           date: utils.getDate(),
           week: utils.getWeek(),
-          iconSelected: 19,
+          iconSelected: "",
           notes: '',
           money: '',
         }
-      })
+      }),
+      mDetail.id="";
   }
 
 });
