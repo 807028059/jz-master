@@ -2,15 +2,21 @@
 // pages/addition/addition.js
 const utils = require('../../utils/util.js');
 const api = require('../../http/api.js');
-let { c_out, c_in, users, mDetail } = getApp().globalData;
+let {
+  c_out,
+  c_in,
+  users,
+  mDetail
+} = getApp().globalData;
 Page({
   data: {
-    openid:'',
+    openid: '',
     current: 0,
     showtimes: 0,
     isUpdate: false,
     categories_in: [],
     categories_out: [],
+    showModal: false,
     data_out: {
       date: utils.getDate(),
       week: utils.getWeek(),
@@ -28,20 +34,20 @@ Page({
   },
 
   onLoad: function () {
-    if(mDetail.type == "0"){
+    if (mDetail.type == "0") {
       this.setData({
         current: 0,
         data_out: mDetail
       })
-    }else if(mDetail.type == "1"){
+    } else if (mDetail.type == "1") {
       this.setData({
         current: 1,
         data_in: mDetail
       })
     }
 
-    if(users.openid == ""){
-      var self=this;
+    if (users.openid == "") {
+      var self = this;
       wx.login({
         success(res) {
           //js调用登陆命令获取到code
@@ -53,7 +59,7 @@ Page({
               data: {
                 code: res.code
               },
-              success:function(wxInfo){
+              success: function (wxInfo) {
                 console.log(wxInfo);
                 //self.data.openid = wxInfo.data.openid
                 var body = JSON.parse(wxInfo.data.object.body);
@@ -70,8 +76,8 @@ Page({
     }
   },
 
-  onShow:function(){
-    if(users.openid != ""){
+  onShow: function () {
+    if (users.openid != "") {
       wx.showLoading({
         title: '加载中',
       })
@@ -80,7 +86,7 @@ Page({
           this.loadData();
         },
       })
-      
+
     }
   },
 
@@ -90,29 +96,35 @@ Page({
     };
     api.getCategories(data).then((res) => {
       let data = this.formatData(res);
-      if(data.incomeIcon.length == 0){
-        wx.showToast({
-          duration: 4000,
-          title: "您未设置收入类别，可先前往设置，默认其它",
-          icon: 'none',
+      if (data.incomeIcon.length == 0) {
+        // wx.showToast({
+        //   duration: 4000,
+        //   title: "您未设置收入类别，可先前往设置，默认其它",
+        //   icon: 'none',
+        // })
+        this.setData({
+          showModal: true
         })
-      }else{
-        if(mDetail.id == ""){
+      } else {
+        if (mDetail.id == "") {
           this.setData({
-            'data_in.iconSelected':data.incomeIcon[0].id
-           })
+            'data_in.iconSelected': data.incomeIcon[0].id
+          })
         }
       }
-      if(data.expenseIcon == 0){
-        wx.showToast({
-          duration: 4000,
-          title: "您未设置支出类别，可先前往设置，默认其它",
-          icon: 'none',
+      if (data.expenseIcon == 0) {
+        // wx.showToast({
+        //   duration: 4000,
+        //   title: "您未设置支出类别，可先前往设置，默认其它",
+        //   icon: 'none',
+        // })
+        this.setData({
+          showModal: true
         })
-      }else{
-        if(mDetail.id == ""){
+      } else {
+        if (mDetail.id == "") {
           this.setData({
-            'data_out.iconSelected':data.expenseIcon[0].id
+            'data_out.iconSelected': data.expenseIcon[0].id
           })
         }
       }
@@ -132,13 +144,13 @@ Page({
     let expenseIcon = [];
     let incomeIcon = [];
     data.list.map((item) => {
-        item.type === '0' ? expenseIcon.push(item) : incomeIcon.push(item);
+      item.type === '0' ? expenseIcon.push(item) : incomeIcon.push(item);
     });
     return {
-        expenseIcon,
-        incomeIcon
+      expenseIcon,
+      incomeIcon
     }
-},
+  },
   onReady: function () {
     wx.setNavigationBarTitle({
       title: '记一笔',
@@ -243,9 +255,9 @@ Page({
       })
       return;
     }
-   
+
     var check = sendData.money.split(".");
-    if (check.length>2) {
+    if (check.length > 2) {
       wx.showToast({
         duration: 3000,
         title: "请正确输入金额",
@@ -289,7 +301,7 @@ Page({
   },
 
   //入库用户信息操作
-  getPerson:function(){
+  getPerson: function () {
     var sendData = {};
     sendData.openid = users.openid;
     api['OpreateUser'](sendData).then((res) => {
@@ -300,11 +312,11 @@ Page({
         title: "出错了",
         icon: 'none',
       })
-    }); 
+    });
   },
 
-  onHide:function(){
-      this.setData({
+  onHide: function () {
+    this.setData({
         current: 0,
         data_out: {
           id: "",
@@ -323,7 +335,21 @@ Page({
           money: '',
         }
       }),
-      mDetail.id="";
+      mDetail.id = "";
+  },
+  openDiaoy: function () {
+    this.setData({
+      showModal: true
+    })
+  },
+  closeDlg: function () {
+    this.setData({
+      showModal: false
+    })
+  },
+  goSet: function(){
+    wx.navigateTo({
+      url: '/pages/catelogsetting/catelogsetting'
+    })
   }
-
 });
