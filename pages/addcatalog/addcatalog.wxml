@@ -3,7 +3,7 @@
   <view class='divide'></view>
   <view class='name'>
     <text>类别名称：</text>
-    <input placeholder='8个字以内' bindinput='watchName' type='text' value='{{name}}'></input>
+    <input placeholder-class="phcolor" placeholder='8个字以内' bindinput='watchName' type='text' value='{{name}}'></input>
   </view>
   <view class='icons'>
     <view class='icon-title'>

@@ -99,3 +99,7 @@
   background: #fff !important;
   color: #FDD835 !important;
 }
+
+.phcolor{
+    color: #DCDCDC;
+}

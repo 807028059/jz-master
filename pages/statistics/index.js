@@ -161,7 +161,7 @@ Page({
 
   getOption1: function () {
     var option = {
-      color: ['#37a2da', '#32c5e9', '#67e0e3'],
+      color: ['#AFEEEE', '#FF6347', '#00FF7F'],
       tooltip: {
         trigger: 'axis',
         axisPointer: {            // 坐标轴指示器，坐标轴触发有效

@@ -94,40 +94,47 @@ Page({
     let data = {
       openid: users.openid
     };
+    var that = this;
     api.getCategories(data).then((res) => {
       let data = this.formatData(res);
       if (data.incomeIcon.length == 0) {
-        // wx.showToast({
-        //   duration: 4000,
-        //   title: "您未设置收入类别，可先前往设置，默认其它",
-        //   icon: 'none',
-        // })
-        this.setData({
-          showModal: true
+        wx.showModal({
+          title: '提示',
+          content: '您未设置收入类别，可先前往设置，默认其它',
+          success: function (res) {
+            if (res.confirm) {
+              that.goSet('1');
+            } 
+          }
         })
-      } else {
+      } else if(data.expenseIcon.length == 0) {
+        wx.showModal({
+          title: '提示',
+          content: '您未设置支出类别，可先前往设置，默认其它',
+          success: function (res) {
+            if (res.confirm) {
+              that.goSet('0');
+            }
+          }
+        })
+      }
+      
+      if (data.incomeIcon.length != 0) {
         if (mDetail.id == "") {
           this.setData({
             'data_in.iconSelected': data.incomeIcon[0].id
           })
         }
       }
-      if (data.expenseIcon == 0) {
-        // wx.showToast({
-        //   duration: 4000,
-        //   title: "您未设置支出类别，可先前往设置，默认其它",
-        //   icon: 'none',
-        // })
-        this.setData({
-          showModal: true
-        })
-      } else {
+
+      if (data.expenseIcon.length != 0) {
         if (mDetail.id == "") {
           this.setData({
             'data_out.iconSelected': data.expenseIcon[0].id
           })
         }
       }
+      
       this.setData({
         categories_in: data.incomeIcon,
         categories_out: data.expenseIcon
@@ -347,9 +354,9 @@ Page({
       showModal: false
     })
   },
-  goSet: function(){
+  goSet: function (current){
     wx.navigateTo({
-      url: '/pages/catelogsetting/catelogsetting'
+      url: '/pages/addcatalog/addcatalog?current=' + current
     })
   }
 });

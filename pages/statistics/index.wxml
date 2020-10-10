@@ -10,7 +10,7 @@
 
   <view class="title">支出统计(Top5)
     <view class="date-text">
-      <picker mode="date" fields="month" value="{{date}}" start="1901-09-01" end="3050-09-01" bindchange="bindDateChange">
+      <picker mode="date" fields="month" value="{{date}}" start="2020-01-01" end="2090-09-01" bindchange="bindDateChange">
           <view class='head-text'>
               <text>{{date.year}}年</text>
               <text class='arrow'>{{date.month}}月</text>

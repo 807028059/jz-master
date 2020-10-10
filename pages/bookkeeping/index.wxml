@@ -75,7 +75,7 @@
 			</view>
 		</swiper-item>
 	</swiper>
-	<view class="mask" wx:if="{{showModal}}">
+	<!-- <view class="mask" wx:if="{{showModal}}">
 		<view class="modalDlg">
       <image src="../../images/message_1.svg" style="width:180px;height:180px;display:block;margin: 30rpx 66px;"></image>
 			<text>您未设置收入类别，可先前往设置，默认其它</text>
@@ -84,6 +84,6 @@
 				<button class="bookBtn" catchtap="goSet">去设置</button>
 			</view>
 		</view>
-	</view>
+	</view> -->
 
 </view>
