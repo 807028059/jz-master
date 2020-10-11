@@ -58,10 +58,14 @@ Page({
         })
     },
     handleModify:function(e){
-        let {id, name, categoryId} = e.target.dataset.item;
-        wx.navigateTo({
-            url: './../addcatalog/addcatalog?current=' + this.data.current+'&name='+name+'&categoryid='+categoryId+'&id='+id,
-        })
+        try {
+            let {id, name, categoryId} = e.target.dataset.item;
+            wx.navigateTo({
+                url: './../addcatalog/addcatalog?current=' + this.data.current+'&name='+name+'&categoryid='+categoryId+'&id='+id,
+            })
+        } catch (error) {
+            console.log("修改报错");
+        }
     },
     formatData(data) {
         let expenseIcon = [];

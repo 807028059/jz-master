@@ -65,7 +65,6 @@ Page({
                 var body = JSON.parse(wxInfo.data.object.body);
                 users.openid = body.openid;
                 self.getPerson();
-                self.loadData();
               }
             })
           } else {
@@ -309,10 +308,12 @@ Page({
 
   //入库用户信息操作
   getPerson: function () {
+    var self = this;
     var sendData = {};
     sendData.openid = users.openid;
     api['OpreateUser'](sendData).then((res) => {
       console.log("==========>openid保存成功");
+      self.loadData();
     }).catch(() => {
       wx.showToast({
         duration: 3000,

@@ -4,11 +4,11 @@
 }
 
 .head {
+  display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   color: rgb(112, 112, 112);
-  margin-top:20px
 }
 
 .appName {
@@ -22,7 +22,8 @@
 }
 
 .avatar {
-  height: 80px;
+  width: 70px;
+  height: 70px;
 }
 
 .section {
