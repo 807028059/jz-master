@@ -38,8 +38,8 @@
 }
 
 .icon-img{
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   padding: 6px;
   border-radius: 100%;
 }
@@ -102,4 +102,5 @@
 
 .phcolor{
     color: #DCDCDC;
+    font-size: 30rpx;
 }

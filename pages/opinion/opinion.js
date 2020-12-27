@@ -10,7 +10,7 @@ Page({
   },
   clcikGood:function(e){
     var sendData = {};
-    sendData.content = e.detail.value.textarea;
+    sendData.content = encodeURIComponent(e.detail.value.textarea);
     sendData.openid = users.openid;
     if(sendData.content == undefined){
       wx.showToast({

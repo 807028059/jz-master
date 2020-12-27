@@ -7,8 +7,8 @@ const method = {
     patch: 'PATCH',
 };
 const host = "www.chingchou.com"; // 服务器地址
-const baseURL = `https://${ host }/`;
-//const baseURL = `http://127.0.0.1:8001/`;
+//const baseURL = `https://${ host }/`;
+const baseURL = `http://127.0.0.1:8001/`;
 
 
 exports.getCategories = function (data) {
